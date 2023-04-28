@@ -8,7 +8,7 @@ const server = fastify({
   logger: true
 });
 
-server.register(cors, {});
+server.register(cors);
 
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
