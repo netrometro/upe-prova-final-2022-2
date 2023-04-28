@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx src/server.ts",
-    "build": "npx prisma db pull && tsc -p tsconfig.json",
+    "build": "prisma generate && prisma migrate deploy && tsc -p tsconfig.json",
     "start": "node dist/server.js"
   },
   "keywords": [],
