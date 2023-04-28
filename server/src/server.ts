@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import cors from '@fastify/cors'
+//import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 
 dotenv.config()
@@ -8,7 +8,7 @@ const server = fastify({
   logger: true
 });
 
-server.register(cors);
+//server.register(cors);
 
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
