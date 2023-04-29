@@ -1,27 +1,23 @@
-import fastify from 'fastify';
-import cors from '@fastify/cors'
-import * as dotenv from 'dotenv';
-import { z } from 'zod';
-import { PrismaClient } from '@prisma/client';
-import { FastifyRequest, FastifyReply } from 'fastify';
-import filmeUp from './controllers/filmes';
+import fastify from "fastify";
+import cors from "@fastify/cors";
+import * as dotenv from "dotenv";
+import filmeUp from "./controllers/filmes";
 
-dotenv.config()
+dotenv.config();
 
 const server = fastify({
-  logger: true
+  logger: true,
 });
 
 server.register(cors);
 
-server.get('/', async (request, reply) => {
+server.get("/", async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
-server.post('/filmes', filmeUp);
+server.post("/filmes", filmeUp);
 
 const PORT: any = process.env.PORT;
-
 
 server.listen({ port: PORT }, (err, address) => {
   if (err) {

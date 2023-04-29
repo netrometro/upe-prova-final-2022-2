@@ -3,21 +3,7 @@ import cors from "@fastify/cors";
 import * as dotenv from "dotenv";
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
-
-interface FastifyRequest {
-  body: {
-    titulo: string;
-    descricao: string;
-    duracao: number;
-    em_cartaz: boolean;
-  };
-}
-
-interface FastifyReply {
-  send(data: any): FastifyReply;
-  status(statusCode: number): FastifyReply;
-}
-
+import { FastifyRequest, FastifyReply } from 'fastify';
 
 dotenv.config();
 
@@ -42,10 +28,10 @@ export const filmeUp = async (request: FastifyRequest, reply: FastifyReply) => {
       data: filme,
     });
     console.log("salvou o filme", filme);
-    reply.status(201).send(novoFilme);
+    reply.status(201).send({success: true, data: filme, message: "Filme foi salvado com sucesso"});
   } catch (error) {
     console.error(error);
-    reply.status(400).send({ mensagem: "Dados inválidos" });
+    reply.status(400).send({ success: false, message: "Erro ao salvar filme, tente novamente" });
   }
 
 };
