@@ -15,3 +15,11 @@ model User {
   email String  @unique
   name  String?
 }
+
+model DragQueen {
+  id     Int       @id @default(autoincrement())
+  name   String
+  season Int
+  winner Boolean
+  info   String?
+}
