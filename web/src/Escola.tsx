@@ -13,7 +13,7 @@ export default function Escola() {
     const [escolas, setEscolas] = useState([]);
 
     const getEscolas = async () => {
-        const escola = await axios.get('http://127.0.0.1:3333/escola');
+        const escola = await axios.get('https://upeprovafinal.onrender.com/escola');
         console.log(escola.data)
         setEscolas(escola.data)
         //setEscolas();
@@ -26,7 +26,7 @@ export default function Escola() {
     const save = async (ev: any) => {
         try {
             ev.preventDefault();
-            await axios.post("http://127.0.0.1:3333/escola", data);
+            await axios.post("https://upeprovafinal.onrender.com/escola", data);
             alert("Escola cadastrada")
         } catch (e) {
             alert("Erro")
