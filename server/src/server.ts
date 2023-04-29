@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
+import { create, listAll } from './escolaController';
 
 dotenv.config()
 
@@ -14,6 +15,8 @@ server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
+server.get('/escola', listAll)
+server.post('/escola', create)
 
 const PORT: any = process.env.PORT;
 
