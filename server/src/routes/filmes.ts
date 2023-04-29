@@ -20,7 +20,7 @@ const filmeSchema = {
 
 async function filmeRoutes(fastify: FastifyInstance) {
   fastify.post<{ Body: { titulo: string; descricao: string; duracao: number; em_cartaz: boolean } }>(
-    '/filme',
+    '/filmes',
     { schema: filmeSchema },
     async (request, reply) => {
       const { titulo, descricao, duracao, em_cartaz } = request.body;
@@ -42,34 +42,35 @@ async function filmeRoutes(fastify: FastifyInstance) {
       }
     },
   );
-
-  fastify.get<{ Params: { id: string } }>('/filme/:id', async (request, reply) => {
-    const { id } = request.params;
-
-    try {
-      const filme = await prisma.filme.findUnique({
-        where: { id: Number(id) },
-      });
-
-      if (!filme) {
-        reply.status(404).send({ message: 'Filme não encontrado' });
-      }
-
-      return filme;
-    } catch (err) {
-      reply.status(500).send({ message: 'Erro ao buscar filme' });
-    }
-  });
-
-  fastify.get('/filme', async () => {
-    try {
-      const filmes = await prisma.filme.findMany();
-
-      return filmes;
-    } catch (err) {
-      reply.status(500).send({ message: 'Erro ao buscar filmes' });
-    }
-  });
 }
+
+//   fastify.get<{ Params: { id: string } }>('/filme/:id', async (request, reply) => {
+//     const { id } = request.params;
+
+//     try {
+//       const filme = await prisma.filme.findUnique({
+//         where: { id: Number(id) },
+//       });
+
+//       if (!filme) {
+//         reply.status(404).send({ message: 'Filme não encontrado' });
+//       }
+
+//       return filme;
+//     } catch (err) {
+//       reply.status(500).send({ message: 'Erro ao buscar filme' });
+//     }
+//   });
+
+//   fastify.get('/filme', async () => {
+//     try {
+//       const filmes = await prisma.filme.findMany();
+
+//       return filmes;
+//     } catch (err) {
+//       reply.status(500).send({ message: 'Erro ao buscar filmes' });
+//     }
+//   });
+// }
 
 export default filmeRoutes;

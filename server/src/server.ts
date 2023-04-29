@@ -3,6 +3,7 @@ import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
+import filmeRoutes from "./routes/filmes";
 
 dotenv.config()
 
@@ -31,7 +32,7 @@ server.post('/filmes', async (request, reply) => {
     const novoFilme = await prisma.filme.create({
       data: filme,
     });
-    console.log("salvou o filme")
+    console.log("salvou o filme", filme);
     reply.status(201).send(novoFilme);
   } catch (error) {
     console.error(error);
@@ -39,8 +40,8 @@ server.post('/filmes', async (request, reply) => {
   }
 });
 
-// const PORT: any = process.env.PORT;
-const PORT = 3333;
+const PORT: any = process.env.PORT;
+// const PORT = 3333;
 
 server.listen({ port: PORT }, (err, address) => {
   if (err) {
