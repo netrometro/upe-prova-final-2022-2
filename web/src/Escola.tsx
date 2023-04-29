@@ -38,9 +38,13 @@ export default function Escola() {
       <div>
         <form onSubmit={save}>
 
+        <label>Nome:</label>
         <input placeholder="nome" required value={data.name} onChange={(ev) => setData({...data, name: ev.target.value})}/>
+        <label>Quantidade de salas: </label>
         <input type="number" required placeholder="Quantidade de salas" value={data.qntdSalas} onChange={(ev) => setData({...data, qntdSalas: parseInt(ev.target.value)})}/>
+        <label>Quantidade de alunos:</label>
         <input type="number" required placeholder="Quantidade de aluno" value={data.qntdAlunos} onChange={(ev) => setData({...data, qntdAlunos: parseInt(ev.target.value)})}/>
+        <label>Tipo: </label>
         <input type="text" required placeholder="Tipo" value={data.tipo} onChange={(ev) => setData({...data, tipo: ev.target.value})}/>
 
         <button type="submit">Salvar</button>
