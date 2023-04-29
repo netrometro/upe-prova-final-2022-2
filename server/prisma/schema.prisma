@@ -15,3 +15,11 @@ model User {
   email String  @unique
   name  String?
 }
+
+model GenshinWeapon {
+  id            String  @id @default(cuid())
+  name          String
+  description   String @db.VarChar(1000)
+  atk           Int
+  weaponT5      Boolean
+}
