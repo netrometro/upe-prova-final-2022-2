@@ -23,7 +23,7 @@ export default function Escola() {
         getEscolas();
     }, [])
 
-    const save = async (ev: any) => {
+    const save = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault();
             await axios.post("https://upeprovafinal.onrender.com/escola", data);
@@ -48,16 +48,16 @@ export default function Escola() {
 
         <div>
             {
-                escolas?.length ? escolas.map((data : any, index : any) =>
-                <ul>
-                    <li key={data.id}>
+                escolas?.length ? escolas.map((data: any) =>
+                <div>
+                    <div key={data.id}>
                         <h2>Nome: {data.name}</h2>
                         <h4>Quantidade de alunos: {data.qntdAlunos}</h4>
                         <h4>Quantidade de salas: {data.qntdSalas}</h4>
                         <h4>Tipo(Primaria, secundaria): {data.tipo}</h4>
-                    </li>
+                    </div >
                     <div>----------------------------------------</div>
-                </ul>
+                </div>
                 ) : <div>Nenhuma escola</div>
             }
         </div>
