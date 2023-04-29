@@ -14,17 +14,13 @@ model User {
   id    String  @id @default(cuid())
   email String  @unique
   name  String?
-  livros Livro[]
 }
 
 model Livro {
-  id          String  @id @default(cuid())
-  titulo      String
-  descricao   String?
-  autor       String?
-  anoPublicao Int?
-  disponivel  Boolean @default(true)
-  user        User?   @relation(fields: [userId], references: [id])
-  userId      String?
+  id            Int       @id @default(autoincrement())
+  titulo        String
+  descricao     String?
+  autor         String?
+  disponivel    Boolean @default(true)
 }
 
