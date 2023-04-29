@@ -16,7 +16,7 @@ model User {
   name  String?
 }
 
-model Escolar {
+model Escola {
   id         Int    @id @default(autoincrement())
   name       String
   qntdSalas  Int
