@@ -1,8 +1,7 @@
 'use client';
-import react from 'react';
 import { api } from "../../api/axios";
-import { FormEvent, useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { FormEvent, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 

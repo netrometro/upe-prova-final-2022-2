@@ -36,9 +36,10 @@ export function ListdragQueens() {
     return (
         <div className="tela">
             <h1>Drag Queens</h1>
+            <p>Lista de drag queens que participaram de Rupaul's Drag Race</p>
             <br />
             <div className="head">
-                <input type="text" className="input-queens" placeholder="Pesquisar" />
+                
                 <button type='button' className="button-green" onClick={() => navigate('/dragQueens/create')}>Adicionar</button>
             </div>
             <table className="table">
@@ -61,7 +62,7 @@ export function ListdragQueens() {
                             <td className="table-body">{dragQueens.info}</td>
                             <td className="table-body">
                                 <div className="button-group">
-                                    {/* <button type='button' className="button-edit" onClick={() => navigate('/dragQueens/edit/' + dragQueens.id)}>Editar</button> */}
+                                   
                                     <button type='button' className="button-red" onClick={() => navigate(`/dragQueens/delete/${dragQueens.id}`)}>Deletar</button>
                                 </div>
                             </td>
