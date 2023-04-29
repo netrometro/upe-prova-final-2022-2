@@ -11,7 +11,7 @@ interface AnimalDTO {
 
   
 
-export class CreateProductService {
+export class CriarAnimaisServices {
     async execute({nome, especie, idade, vacinado}: AnimalDTO): Promise<Animal> {
             const product = await prismaClient.animal.create({
                 data: {
