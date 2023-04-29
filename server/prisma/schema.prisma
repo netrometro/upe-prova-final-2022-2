@@ -15,3 +15,23 @@ model User {
   email String  @unique
   name  String?
 }
+
+//Trabalho de Elison, Nao mexer
+model Dono {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  sobrenome String
+  cpf       String   @unique
+  animais   Animal[]
+}
+
+model Animal {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  especie   String
+  idade     Int
+  vacinado  Boolean
+  dono      Dono?  @relation(fields: [donoId], references: [id])
+  donoId    Int?
+}
+//Fim, trabalho de elison
