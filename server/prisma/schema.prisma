@@ -15,3 +15,11 @@ model User {
   email String  @unique
   name  String?
 }
+
+model Escolar {
+  id         Int    @id @default(autoincrement())
+  name       String
+  qntdSalas  Int
+  qntdAlunos Int
+  tipo       String
+}
