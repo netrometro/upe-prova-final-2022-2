@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Escola() {
 
@@ -10,6 +10,19 @@ export default function Escola() {
         tipo: ""
     })
 
+    const [escolas, setEscolas] = useState([]);
+
+    const getEscolas = async () => {
+        const escola = await axios.get('http://127.0.0.1:3333/escola');
+        console.log(escola.data)
+        setEscolas(escola.data)
+        //setEscolas();
+    }
+
+    useEffect(() => {
+        getEscolas();
+    }, [])
+
     const save = async (ev: any) => {
         try {
             ev.preventDefault();
@@ -18,6 +31,7 @@ export default function Escola() {
         } catch (e) {
             alert("Erro")
         }
+        getEscolas();
     }
 
     return (
@@ -31,6 +45,22 @@ export default function Escola() {
 
         <button type="submit">Salvar</button>
         </form>
+
+        <div>
+            {
+                escolas?.length ? escolas.map((data : any, index : any) =>
+                <ul>
+                    <li key={data.id}>
+                        <h2>Nome: {data.name}</h2>
+                        <h4>Quantidade de alunos: {data.qntdAlunos}</h4>
+                        <h4>Quantidade de salas: {data.qntdSalas}</h4>
+                        <h4>Tipo(Primaria, secundaria): {data.tipo}</h4>
+                    </li>
+                    <div>----------------------------------------</div>
+                </ul>
+                ) : <div>Nenhuma escola</div>
+            }
+        </div>
       </div>
     );
   }
