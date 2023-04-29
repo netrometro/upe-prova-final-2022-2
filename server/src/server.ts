@@ -2,11 +2,11 @@ import fastify from 'fastify';
 import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { PrismaClient } from "@prisma/client";
+import { z } from 'zod';
 
 const prisma = new PrismaClient({
   log: ['query'],
 })
-
 
 dotenv.config()
 
@@ -35,32 +35,23 @@ server.get('/dragQueens', async (request, reply) => {
   }
 })
 
-interface IdragQueenBody {
-  name: string;
-  season: number;
-  winner: boolean;
-  info?: string;
+const dragQueenBody = z.object({
+  name: z.string(),
+  season: z.number(),
+  winner: z.boolean(),
+  info: z.string().optional(),
+});
 
-
-};
-
-server.post<{Body: IdragQueenBody}>('/dragQueens/create', async (request, reply) => {   
+server.post('/dragQueens/create', async (request, reply) => {   
   
   try{
-      const {name, season, winner, info} = request.body;
-      await prisma.dragQueen.create({
-          
-          data: {
-              name,
-              season, 
-              winner, 
-              info
-          },
-
-      })
-
+      
+      const dragQueen = dragQueenBody.parse(request.body);
+      const newDragQueen = await prisma.dragQueen.create({
+        data: dragQueen,
+      });
       reply.status(201).send({message: 'Drag queen criada com sucesso!'});
-      console.log(`Drag queen ${name}, season=${season}, info=${info}, winner=${winner}`);
+      console.log(`Drag queen ${dragQueen.name}, season=${dragQueen.season}, info=${dragQueen.info}, winner=${dragQueen.winner}`);
   } catch (error) {
           
       console.error(error);
@@ -70,19 +61,19 @@ server.post<{Body: IdragQueenBody}>('/dragQueens/create', async (request, reply)
   }
 })
 
-interface IdragQueenByIdParam {
-        
-  id: number;
-  
-};
+const param = z.object({
+  id: z.number(),
+});
 
-server.delete<{Params: IdragQueenByIdParam}>('/dragQueens/delete/:id', async (request, reply) => {
+server.delete('/dragQueens/delete/:id', async (request, reply) => {
   try{
-      const {id} = request.params;
+      const {id} = param.parse(request.params);
       
       await prisma.dragQueen.delete({
 
-      where: { id: Number(id) }
+        where: {
+          id: id,
+        },
       
       })
 
