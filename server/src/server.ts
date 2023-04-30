@@ -8,7 +8,7 @@ import { create, listAll } from './escolaController';
 import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
 import filmeUp from "./controllers/Filmes/filmes";
 import buscarFilmes from "./controllers/Filmes/getFilmes";
-import FiltrarFilmes from "./controllers/Filmes/findFilmes";
+import FiltrarFilmes from './controllers/Filmes/findFilmes';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -49,7 +49,7 @@ server.post('/animais/create', async (request, reply) => {
 
 server.post("/filmes", filmeUp);
 server.get("/filmes", buscarFilmes);
-server.get("/filtrar/filmes", FiltrarFilmes);
+server.get("/Filtrarfilmes", FiltrarFilmes);
 server.get('/escola', listAll)
 server.post('/escola', create)
 server.get('/tasks', async (request, reply) => {
