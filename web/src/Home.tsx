@@ -5,7 +5,10 @@ export default function Home() {
     return (
        <>
          <p>HomePage</p>
-         <Link to={"/escola"}>Escolas</Link>
+         <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column"}}>
+          <Link to={"/escola"}>Escolas</Link>
+          <Link to={"/filmes"}>Filmes</Link>
+         </div>
        </>
     );
   }
