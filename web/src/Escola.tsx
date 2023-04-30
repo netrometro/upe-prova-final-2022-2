@@ -3,6 +3,14 @@ import { useEffect, useState } from "react";
 
 export default function Escola() {
 
+    interface Escola {
+        id: number;
+        name: string;
+        qntdSalas: number;
+        qntdAlunos: number;
+        tipo: string;
+    }
+
     const [data, setData] = useState({
         name: "",
         qntdSalas: 0,
@@ -10,7 +18,8 @@ export default function Escola() {
         tipo: ""
     })
 
-    const [escolas, setEscolas] = useState([]);
+    const [escolas, setEscolas] = useState<Escola[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const getEscolas = async () => {
         const escola = await axios.get('https://upeprovafinal.onrender.com/escola');
@@ -18,6 +27,8 @@ export default function Escola() {
         setEscolas(escola.data)
         //setEscolas();
     }
+
+    const escolasFiltradas = escolas.filter(escola => escola.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     useEffect(() => {
         getEscolas();
