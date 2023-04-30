@@ -52,7 +52,6 @@ export function ListdragQueens() {
                         <th className="table-head">Ações</th>
                     </tr>
                 </thead>
-                <br />
                 <tbody >
                     {dragQueens.map(dragQueens => (
                         <tr key={dragQueens.id}>
