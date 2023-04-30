@@ -1,5 +1,4 @@
 import './App.css'
-//import TaskList from './pages/TaskList'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ListdragQueens from './pages/DragQueens/listDragQueens';
 import AddDragQueen from './pages/DragQueens/addDragQueen';
@@ -9,17 +8,9 @@ import AnimalPag from "./pages/animal/index";
 import Filmes from "./pages/Filmes/Filmes";
 import ListFilmes from "./pages/Filmes/ListFilmes";
 import FiltrarFilmes from './pages/Filmes/FiltrarFilmes';
+import TaskList from './pages/TaskList';
 
 export default function App() {
-
-// CODIGO COM ERRO:
-// Esse trecho de codigo estava impedindo que as outras rotas aparecesse na Home
-//  return <div>
-//  <h1>Task List</h1>
-//  <TaskList />
-//</div>
-
-  
   return (
     <>
       <div className="app">
@@ -34,6 +25,7 @@ export default function App() {
               <Route path='/' element={ <Home /> } />
               <Route path='/escola' element={ <Escola/> }/>
               <Route path='/animal' element={<AnimalPag />} />
+              <Route path='/tasks' element ={<TaskList/>}/>
             </Routes>
           </Router>
         </main>
