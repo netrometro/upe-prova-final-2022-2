@@ -8,6 +8,7 @@ import Home from "./Home";
 import AnimalPag from "./pages/animal/index";
 import Filmes from "./pages/Filmes/Filmes";
 import ListFilmes from "./pages/Filmes/ListFilmes";
+import FiltrarFilmes from './pages/Filmes/FiltrarFilmes';
 
 export default function App() {
 
@@ -27,6 +28,7 @@ export default function App() {
             <Routes>
               <Route path="/filmes" element={<Filmes />} />
               <Route path="/ListaFilmes" element={<ListFilmes />} />
+              <Route path="/FiltrarFilmes" element={<FiltrarFilmes />} />
               <Route path="/dragQueens" element={<ListdragQueens/>} />
               <Route path="/dragQueens/create" element={<AddDragQueen/>} />
               <Route path='/' element={ <Home /> } />
