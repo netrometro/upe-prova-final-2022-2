@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
-// -> LocalHost
-// import api from "../../services/api";
 
 export default function ListFilmes() {
   const [filmes, setFilmes] = useState([]);
