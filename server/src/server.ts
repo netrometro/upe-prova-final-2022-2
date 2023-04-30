@@ -41,7 +41,14 @@ async function bootstrap() {
 
   fastify.post('/genshinweapon', async (request, reply) => {
 
-    const { name, description, atk, weaponT5 } = request.body;
+    const createWeaponBody = z.object({
+      name: z.string(),
+      description: z.string(),
+      atk: z.number(),
+      weaponT5: z.boolean(),
+    });
+
+    const { name, description, atk, weaponT5 } = createWeaponBody.parse(request.body);
 
     return reply.status(201).send({ name, description, atk, weaponT5 }) 
 
