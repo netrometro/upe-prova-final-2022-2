@@ -22,3 +22,21 @@ model Animal {
   idade    Int
   vacinado Boolean
 }
+
+
+model DragQueen {
+  id     Int       @id @default(autoincrement())
+  name   String
+  season Int
+  winner Boolean
+  info   String?
+}
+
+model Escola {
+  id         Int    @id @default(autoincrement())
+  name       String
+  qntdSalas  Int
+  qntdAlunos Int
+  tipo       String
+}
+

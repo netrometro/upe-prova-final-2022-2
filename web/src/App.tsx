@@ -1,15 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from "./pages/animal/index";
+import './App.css'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ListdragQueens from './pages/DragQueens/listDragQueens';
+import AddDragQueen from './pages/DragQueens/addDragQueen';
+import Escola from "./Escola";
+import Home from "./Home";
+import AnimalPag from "./pages/animal/index";
 
-function App() {
+export default function App() {
+  
   return (
-    <Router>
-      <Routes>
-        <Route path='/animal' element={<Home />} />
-
-      </Routes>
-    </Router>
-  )
+    <>
+      <div className="app">
+        <main> 
+          <Router>
+            <Routes>
+              <Route path="/dragQueens" element={<ListdragQueens/>} />
+              <Route path="/dragQueens/create" element={<AddDragQueen/>} />
+              <Route path='/' element={ <Home /> } />
+              <Route path='/escola' element={ <Escola/> }/>
+              <Route path='/animal' element={<AnimalPag />} />
+            </Routes>
+          </Router>
+        </main>
+      </div>
+    </>
+  );
 }
-
-export default App
