@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import api from "./services/api";
-import { Link } from "react-router-dom";
 
-export default function Filmes() {
+export default function ListFilmes() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [duracao, setDuracao] = useState("");
@@ -75,7 +74,6 @@ export default function Filmes() {
           </div>
           <button type="submit">Enviar</button>
         </form>
-        <Link to={"/ListaFilmes"}>Veja aqui a sua lista de filmes</Link>
       </div>
 
       <a
