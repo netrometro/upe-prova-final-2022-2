@@ -8,6 +8,8 @@ export default function Home() {
          <Link to={"/escola"}>Escolas</Link>
          <br/>
          <Link to={"/dragQueens"}>Drag Queens</Link>
+         <br/>
+         <Link to={"/animal"}>Animals</Link>
        </>
     );
   }
