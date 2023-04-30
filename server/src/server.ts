@@ -11,8 +11,10 @@ const server = fastify({
 server.register(cors);
 
 server.get('/', async (request, reply) => {
-  return { msg: "Prova Final" };
+  return { msg: "teste" };
 });
+
+
 
 
 const PORT: any = process.env.PORT;

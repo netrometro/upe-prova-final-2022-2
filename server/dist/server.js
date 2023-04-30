@@ -26,14 +26,25 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_fastify = __toESM(require("fastify"));
 var import_cors = __toESM(require("@fastify/cors"));
 var dotenv = __toESM(require("dotenv"));
+
+const modelo_musica = require('./modelo_musica')
+
 dotenv.config();
 var server = (0, import_fastify.default)({
   logger: true
 });
 server.register(import_cors.default);
 server.get("/", async (request, reply) => {
-  return { msg: "Prova Final" };
+  return { msg: "prova final" };
 });
+
+server.get("/criar", async (request, reply) => {
+
+  modelo_musica.criarMusica(request.body)
+
+  return { msg: "criando" };
+});
+
 var PORT = process.env.PORT;
 server.listen({ port: PORT }, (err, address) => {
   if (err) {
