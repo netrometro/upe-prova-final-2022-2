@@ -9,7 +9,7 @@ export default function Home() {
          <br/>
          <Link to={"/dragQueens"}>Drag Queens</Link>
          <br/>
-         <Link to={"/animals"}>Animals</Link>
+         <Link to={"/animal"}>Animals</Link>
        </>
     );
   }
