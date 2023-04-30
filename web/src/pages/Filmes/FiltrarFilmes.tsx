@@ -11,10 +11,23 @@ export default function FiltrarFilmes() {
       const response = await api.get("Filtrarfilmes", { params: { busca } });
       setFilmes(response.data.data);
     } catch (error) {
-      alert(error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          alert("Por favor, forneça um termo de busca válido.");
+        } else if (error.response.status === 404) {
+          alert("Não foram encontrados filmes com essa palavra.");
+        } else {
+          alert("Erro ao buscar filmes.");
+        }
+      } else if (error.request) {
+        alert("Erro de conexão com o servidor.");
+      } else {
+        alert("Ocorreu um erro inesperado.");
+      }
       console.error(error);
     }
   }
+  
 
   return (
     <>
