@@ -13,4 +13,6 @@ export default async function(app: FastifyInstance): Promise<void> {
     const authUserController = new CriarAnimaisController();
     await authUserController.handle(request, reply);
   });
+
+  
 }
