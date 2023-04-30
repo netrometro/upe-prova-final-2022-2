@@ -24,6 +24,10 @@ server.register(cors);
 
 const prismaElison = new PrismaClient();
 
+server.get('/teste', async (request, reply) => {
+  return { msg: "ok"};
+});
+
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
