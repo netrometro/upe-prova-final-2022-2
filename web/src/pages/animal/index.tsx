@@ -25,7 +25,7 @@ function AnimalPag() {
       idade: parseInt(idade, 10),
       vacinado,
     };
-    await axios.post('https://upeprovafinal.onrender.com/escola', animal);
+    await axios.post('http://localhost:3333/animais', animal);
     setNome('');
     setEspecie('');
     setIdade('');

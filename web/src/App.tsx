@@ -9,10 +9,12 @@ import AnimalPag from "./pages/animal/index";
 
 export default function App() {
 
-  return <div>
-  <h1>Task List</h1>
-  <TaskList />
-</div>
+// CODIGO COM ERRO:
+// Esse trecho de codigo estava impedindo que as outras rotas aparecesse na Home
+//  return <div>
+//  <h1>Task List</h1>
+//  <TaskList />
+//</div>
 
   
   return (

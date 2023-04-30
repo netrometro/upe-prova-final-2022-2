@@ -14,7 +14,7 @@ export default function AnimaisList() {
 
   useEffect(() => {
     async function fetchAnimais() {
-      const response = await axios.get<Animal[]>('https://upeprovafinal.onrender.com/animais');
+      const response = await axios.get<Animal[]>('http://localhost:3333/animais');
       setAnimais(response.data);
     }
 
