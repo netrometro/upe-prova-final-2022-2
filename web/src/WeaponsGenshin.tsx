@@ -35,7 +35,7 @@ function WeaponForm({ onAddWeapon }) {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Adicione aqui suas armas do Genshin!</h2>
-      <h3>Que a grande Baal lhe guie, juntos pela eternidade.</h3>
+      
       <div>
         <label htmlFor="name">Nome da arma:</label>
         <input
