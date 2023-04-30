@@ -2,8 +2,11 @@ import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { z } from 'zod';
 import * as dotenv from 'dotenv';
+import { PrismaClient } from '@prisma/client';
 
 dotenv.config()
+
+const prisma = new PrismaClient();
 
 const server = fastify({
   logger: true
@@ -50,6 +53,17 @@ async function bootstrap() {
 
     const { name, description, atk, weaponT5 } = createWeaponBody.parse(request.body);
 
+    // o await é para esperar a criação do objeto
+    await prisma.genshinWeapon.create({
+      data: {
+        name,
+        description,
+        atk,
+        weaponT5,
+      },
+    });
+
+    
     return reply.status(201).send({ name, description, atk, weaponT5 }) 
 
     //return { name, description, atk, weaponT5 };
