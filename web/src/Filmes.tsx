@@ -1,4 +1,29 @@
+import React, { useState } from "react";
+import api from "./services/api";
+
 export default function Filmes() {
+  const [titulo, setTitulo] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [duracao, setDuracao] = useState("");
+  const [emCartaz, setEmCartaz] = useState(false);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      const response = await api.post("/filmes", {
+        titulo,
+        descricao,
+        duracao: parseInt(duracao),
+        em_cartaz: emCartaz,
+      });
+      console.log(response.data);
+      alert("Filme cadastrado com sucesso!");
+    } catch (error) {
+      alert("Cadastro de filme não realizado, por favor tentar novamente");
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div
@@ -10,24 +35,45 @@ export default function Filmes() {
           background: "rgba(255, 255, 255, 0.1)",
         }}
       >
-        <h1>font-weight</h1>
-        <p style={{ fontWeight: 700 }}>
-          Lorem ipsum dolor sit amet,{" "}
-          <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore
-          </span>{" "}
-          et dolore magna aliqua. Sed enim ut sem viverra aliquet eget sit.
-        </p>
-        <h1>GRAD</h1>
-        <p style={{ fontVariationSettings: "'GRAD' 150" }}>
-          Lorem ipsum dolor sit amet,{" "}
-          <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore
-          </span>{" "}
-          et dolore magna aliqua. Sed enim ut sem viverra aliquet eget sit.
-        </p>
+        <h1>Guarde aqui os seus títulos de filmes</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="titulo">Título:</label>
+            <input
+              type="text"
+              id="titulo"
+              value={titulo}
+              onChange={(event) => setTitulo(event.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="descricao">Descrição:</label>
+            <textarea
+              id="descricao"
+              value={descricao}
+              onChange={(event) => setDescricao(event.target.value)}
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="duracao">Duração:</label>
+            <input
+              type="text"
+              id="duracao"
+              value={duracao}
+              onChange={(event) => setDuracao(event.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="emCartaz">Em cartaz:</label>
+            <input
+              type="checkbox"
+              id="emCartaz"
+              checked={emCartaz}
+              onChange={(event) => setEmCartaz(event.target.checked)}
+            />
+          </div>
+          <button type="submit">Enviar</button>
+        </form>
       </div>
 
       <a
