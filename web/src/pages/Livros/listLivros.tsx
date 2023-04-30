@@ -19,6 +19,7 @@ export function Listlivros() {
 
     const navigate = useNavigate();
     const [livros, setLivros] = useState<Livros[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
     
     useEffect(() => {
         api.get("/livros")
@@ -31,13 +32,29 @@ export function Listlivros() {
         });
         console.log(livros);
     }, []);
+
+    const handleSearch = () => {
+        api.get("/livros/search/:", {
+            params: {
+                query: searchTerm
+            }
+        })
+        .then((response: AxiosResponse<Livros[]>) => {
+            setLivros(response.data);
+            console.log(response.data);
+        })
+        .catch((error: Error) => {
+            console.error(error);
+        });
+    }
     
     return (
         <div className="tela-list">
             <h1>Livros</h1>
             <br />
             <div className="head">
-                <input type="text" placeholder="Pesquisar" />
+            <input type="text"  className="button-pesquisa" placeholder="Pesquisar" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
+                <button type='button' className="button-search" onClick={handleSearch}>Pesquisar</button>
                 <button type='button' className="button-add" onClick={() => navigate('/livros/create')}>Adicionar</button>
             </div>
             <table className="table">

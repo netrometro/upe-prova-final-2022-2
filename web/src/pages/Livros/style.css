@@ -167,6 +167,26 @@
   cursor: pointer;
 }
 
+.button-search {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 13px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button-search:hover {
+  background-color: #0069d9;
+}
+
+.button-pesquisa{
+  padding: 5px 13px;
+  margin-right: 10px;
+}
+
 .button-blue {
   background-color: #008CBA;
   color: white;

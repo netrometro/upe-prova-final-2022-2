@@ -107,6 +107,26 @@ server.get<{ Params: LivroParams }>('/livros/:id', async (request, reply) => {
   }
 });
 
+server.get<{ Params: { query: string } }>('/livros/search/:query', async (request, reply) => {
+  try {
+    const { query } = request.params;
+    const livros = await prisma.livro.findMany({
+      where: {
+        OR: [
+          { titulo: { contains: query } },
+          { descricao: { contains: query } },
+          { autor: { contains: query } }
+        ]
+      }
+    });
+    console.log('chegou', livros)
+    reply.send(livros);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao buscar livros!' });
+  }
+});
+
 const PORT: any = process.env.PORT;
 
 server.listen({ port: PORT }, (err, address) => {
