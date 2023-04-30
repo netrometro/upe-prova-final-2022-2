@@ -9,6 +9,10 @@ import Filmes from "./pages/Filmes/Filmes";
 import ListFilmes from "./pages/Filmes/ListFilmes";
 import FiltrarFilmes from './pages/Filmes/FiltrarFilmes';
 import TaskList from './pages/TaskList';
+import Listlivros from './pages/Livros/listLivros';
+import AddLivros from './pages/Livros/addLivros';
+import DeleteLivro from './pages/Livros/deleteLivro';
+import EditLivro from './pages/Livros/putLivro';
 
 export default function App() {
   return (
@@ -26,6 +30,11 @@ export default function App() {
               <Route path='/escola' element={ <Escola/> }/>
               <Route path='/animal' element={<AnimalPag />} />
               <Route path='/tasks' element ={<TaskList/>}/>
+              <Route path="/livros" element={<Listlivros/>} />
+              <Route path="/livros/create" element={<AddLivros/>} />
+              <Route path="/livros/delete/:id" element={<DeleteLivro/>} />
+              <Route path="/livros/:id" element={<EditLivro/>} />
+              <Route path="/" element={<h1>Home</h1>} />
             </Routes>
           </Router>
         </main>
