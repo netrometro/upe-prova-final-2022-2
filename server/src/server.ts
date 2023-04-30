@@ -49,7 +49,7 @@ server.post('/animais', async (request, reply) => {
 
 server.post("/filmes", filmeUp);
 server.get("/filmes", buscarFilmes);
-server.post("/filtrar/filmes", FiltrarFilmes);
+server.get("/filtrar/filmes", FiltrarFilmes);
 server.get('/escola', listAll)
 server.post('/escola', create)
 server.get('/tasks', async (request, reply) => {
