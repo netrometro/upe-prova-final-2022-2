@@ -24,11 +24,15 @@ server.register(cors);
 
 const prismaElison = new PrismaClient();
 
+server.get('/teste', async (request, reply) => {
+  return { msg: "ok"};
+});
+
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
-server.get('/animais/get', async (request, reply) => {
+server.get('/animais', async (request, reply) => {
   const animais = await prismaElison.animal.findMany();
   return animais;
 });
@@ -40,7 +44,7 @@ interface Animal {
   vacinado: boolean;
 }
 
-server.post('/animais/create', async (request, reply) => {
+server.post('/animais', async (request, reply) => {
   const { nome, especie, idade, vacinado } = request.body as Animal;
   const criarAnimaisService = new CriarAnimaisServices();
   const animal = await criarAnimaisService.execute({ nome, especie, idade, vacinado });
@@ -86,7 +90,7 @@ server.post('/dragQueens/create', async (request, reply) => {
         data: dragQueen,
       });
       reply.status(201).send({message: 'Drag queen criada com sucesso!'});
-      console.log(`Drag queen ${dragQueen.name}, season=${dragQueen.season}, info=${dragQueen.info}, winner=${dragQueen.winner}`);
+      console.log(newDragQueen);
   } catch (error) {
           
       console.error(error);
@@ -94,33 +98,6 @@ server.post('/dragQueens/create', async (request, reply) => {
       reply.status(400).send({message: 'Erro ao criar Drag queen!'});
       
   }
-})
-
-const param = z.object({
-  id: z.number(),
-});
-
-server.delete('/dragQueens/delete/:id', async (request, reply) => {
-  try{
-      const {id} = param.parse(request.params);
-      
-      await prisma.dragQueen.delete({
-
-        where: {
-          id: id,
-        },
-      
-      })
-
-      reply.status(200).send({message: 'Drag queen deletada com sucesso!'});
-  
-  } catch (error) {
-
-      console.error(error);
-      reply.status(400).send({message: 'Erro ao deletar Drag queen!'});
-  
-  }
-
 })
 
 server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
