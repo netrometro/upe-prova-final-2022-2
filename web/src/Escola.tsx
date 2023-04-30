@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Escola() {
+    const api = import.meta.env.VITE_API_URL;
 
     interface Escola {
         id: number;
@@ -22,7 +23,7 @@ export default function Escola() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const getEscolas = async () => {
-        const escola = await axios.get('https://upeprovafinal.onrender.com/escola');
+        const escola = await axios.get(`${api}/escola`);
         console.log(escola.data)
         setEscolas(escola.data)
         //setEscolas();
@@ -37,7 +38,7 @@ export default function Escola() {
     const save = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault();
-            await axios.post("https://upeprovafinal.onrender.com/escola", data);
+            await axios.post(`${api}/escola`, data);
             alert("Escola cadastrada")
         } catch (e) {
             alert("Erro")
