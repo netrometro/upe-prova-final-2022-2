@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../api";
+import api from "../../services/api";
 import { Link } from "react-router-dom";
 
 export default function Filmes() {
@@ -105,6 +105,8 @@ export default function Filmes() {
           <button type="submit">Enviar</button>
         </form>
         <Link to={"/ListaFilmes"}>Veja aqui a sua lista de filmes</Link>
+        <br />
+        <Link to={"/FiltrarFilmes"}>Busque aqui os seus filmes</Link>
       </div>
 
       <a
