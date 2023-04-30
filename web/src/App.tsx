@@ -6,8 +6,8 @@ import AddDragQueen from './pages/DragQueens/addDragQueen';
 import Escola from "./Escola";
 import Home from "./Home";
 import AnimalPag from "./pages/animal/index";
-import Filmes from "./Filmes";
-import ListFilmes from "./ListFilmes";
+import Filmes from "./pages/Filmes/Filmes";
+import ListFilmes from "./pages/Filmes/ListFilmes";
 
 export default function App() {
 

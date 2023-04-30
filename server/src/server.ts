@@ -7,8 +7,8 @@ import { CriarAnimaisServices } from './services/animals/criarAnimaisServices';
 import { z } from 'zod';
 import { create, listAll } from './escolaController';
 import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
-import filmeUp from "./controllers/filmes";
-import buscarFilmes from "./controllers/getFilmes";
+import filmeUp from "./controllers/Filmes/filmeUp";
+import buscarFilmes from "./controllers/Filmes/getFilmes";
 
 const prisma = new PrismaClient({
   log: ['query'],
