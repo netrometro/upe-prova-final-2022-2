@@ -1,7 +1,14 @@
 import fastify, { FastifyRequest, FastifyReply } from 'fastify';
 import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
+import { PrismaClient } from "@prisma/client";
+import { z } from 'zod';
+import { create, listAll } from './escolaController';
 import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
+
+const prisma = new PrismaClient({
+  log: ['query'],
+})
 
 dotenv.config()
 
@@ -15,10 +22,78 @@ server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
+server.get('/escola', listAll)
+server.post('/escola', create)
 server.get('/tasks', async (request, reply) => {
   return getAllTasks();
 })
 
+server.get('/dragQueens', async (request, reply) => {
+        
+  try{ 
+      const dragQueens = await prisma.dragQueen.findMany({
+      });
+      reply.send(dragQueens);
+  
+  } catch (error) {
+      
+      console.error(error);
+      reply.status(400).send({message: 'Erro ao buscar Drag queens!'});
+  }
+})
+
+const dragQueenBody = z.object({
+  name: z.string(),
+  season: z.number(),
+  winner: z.boolean(),
+  info: z.string().optional(),
+});
+
+server.post('/dragQueens/create', async (request, reply) => {   
+  
+  try{
+      
+      const dragQueen = dragQueenBody.parse(request.body);
+      const newDragQueen = await prisma.dragQueen.create({
+        data: dragQueen,
+      });
+      reply.status(201).send({message: 'Drag queen criada com sucesso!'});
+      console.log(`Drag queen ${dragQueen.name}, season=${dragQueen.season}, info=${dragQueen.info}, winner=${dragQueen.winner}`);
+  } catch (error) {
+          
+      console.error(error);
+      
+      reply.status(400).send({message: 'Erro ao criar Drag queen!'});
+      
+  }
+})
+
+const param = z.object({
+  id: z.number(),
+});
+
+server.delete('/dragQueens/delete/:id', async (request, reply) => {
+  try{
+      const {id} = param.parse(request.params);
+      
+      await prisma.dragQueen.delete({
+
+        where: {
+          id: id,
+        },
+      
+      })
+
+      reply.status(200).send({message: 'Drag queen deletada com sucesso!'});
+  
+  } catch (error) {
+
+      console.error(error);
+      reply.status(400).send({message: 'Erro ao deletar Drag queen!'});
+  
+  }
+
+})
 
 server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
   return getTaskById(request, reply);
