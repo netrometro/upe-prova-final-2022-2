@@ -1,7 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from "./pages/home/index";
 
 function App() {
   return (
-    <div>home</div>
+    <Router>
+      <Routes>
+        <Route path='/animal' element={<Home />} />
+
+      </Routes>
+    </Router>
   )
 }
 
