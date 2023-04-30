@@ -1,0 +1,152 @@
+.tela{
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: black;
+    padding: 60px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+
+}
+
+.button-green{
+    background-color: #1dd41d;
+    border: none;
+    color: #fff;
+    margin: 15px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+.button-green:hover{
+    cursor: pointer;
+    background-color: #09b409;
+}
+
+.button-red{
+    background-color: #d41d1d;
+    border: none;
+    color: #fff;
+    margin: 15px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+.button-red:hover{
+    cursor: pointer;
+    background-color: #b40909;
+}
+
+.button-blue{
+    background-color: #1d8cd4;
+    border: none;
+    color: #fff;
+    margin: 15px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+.button-blue:hover{
+    cursor: pointer;
+    background-color: #096db4;
+}
+
+.table-head{
+    text-align: center;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+.table-body{
+    text-align: justify;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.table-season{
+    text-align: center;
+
+}
+
+.body-queens{
+    width: 90%;
+}
+
+.input-queens{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    box-shadow: 0px 0px 10px #c2c1c1;
+}
+
+.label-queens{
+    text-align: start;
+    margin: 15px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: black;
+    padding: 40px;
+    width: 40%;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #c2c1c1;
+}
+
+.head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+
+}
+.button-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.table{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    flex-wrap: wrap;
+    margin: 40px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-shadow: 0px 0px 10px #c2c1c1;
+
+}
