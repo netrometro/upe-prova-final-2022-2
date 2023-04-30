@@ -1,5 +1,6 @@
 import fastify from 'fastify';
-import cors from '@fastify/cors'
+import cors from '@fastify/cors';
+import { z } from 'zod';
 import * as dotenv from 'dotenv';
 
 dotenv.config()
@@ -24,3 +25,31 @@ server.listen({ port: PORT }, (err, address) => {
   }
   console.log(`Server listening at ${address}`);
 });
+
+async function bootstrap() {
+  const fastify = require('fastify')({ logger: true });
+
+  await fastify.register(cors, {
+    origin: 'true',
+})
+
+  fastify.get('/genshinweapon/count', async () => {
+    const count = await prisma.genshinWeapon.count();
+
+    return { count };
+  });
+
+  fastify.post('/genshinweapon', async (request, reply) => {
+
+    const { name, description, atk, weaponT5 } = request.body;
+
+    return reply.status(201).send({ name, description, atk, weaponT5 }) 
+
+    //return { name, description, atk, weaponT5 };
+  });
+
+  await fastify.listen({ port: 3000 })
+
+}
+
+bootstrap();
