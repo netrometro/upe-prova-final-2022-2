@@ -4,15 +4,6 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
-
-interface DragQueens {
-  id: number;
-  name: string;
-  season: number;
-  winner: boolean;
-  info?: string;
-}
-
 export function AddDragQueen() {
 
   const navigate = useNavigate();
@@ -21,8 +12,6 @@ export function AddDragQueen() {
   const [DragQueenSeason, setDragQueenSeason] = useState(0);
   const [DragQueenWinner, setDragQueenWinner] = useState(false);
   const [DragQueenInfo, setDragQueenInfo] = useState('');
-  const [dragQueen, setDragQueen] = useState<DragQueens[]>([]);
-
 
   function createDragQueen(event: FormEvent) {
     event.preventDefault();
