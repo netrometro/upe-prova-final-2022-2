@@ -6,6 +6,8 @@ export default function Home() {
        <>
          <p>HomePage</p>
          <Link to={"/escola"}>Escolas</Link>
+         <br/>
+         <Link to={"/dragQueens"}>Drag Queens</Link>
        </>
     );
   }
