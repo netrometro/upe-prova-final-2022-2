@@ -168,7 +168,7 @@
 }
 
 .button-search {
-  background-color: #007bff;
+  background-color: blue;
   color: white;
   border: none;
   padding: 6px 13px;
@@ -176,10 +176,6 @@
   font-size: 14px;
   cursor: pointer;
   margin-right: 10px;
-}
-
-.button-search:hover {
-  background-color: #0069d9;
 }
 
 .button-pesquisa{

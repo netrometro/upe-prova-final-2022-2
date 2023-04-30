@@ -46,6 +46,7 @@ export function Listlivros() {
         .catch((error: Error) => {
             console.error(error);
         });
+        setSearchTerm("");
     }
     
     return (
