@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../../services/api";
 
+interface Filme {
+  id: number;
+  titulo: string;
+  descricao: string;
+  duracao: number;
+  em_cartaz: boolean;
+}
+
+
 export default function FiltrarFilmes() {
-  const [filmes, setFilmes] = useState([]);
+  const [filmes, setFilmes] = useState<Filme[]>([]);
   const [busca, setBusca] = useState("");
 
   async function handleSearch(e: React.FormEvent<HTMLFormElement>) {
@@ -10,7 +19,7 @@ export default function FiltrarFilmes() {
     try {
       const response = await api.get("Filtrarfilmes", { params: { busca } });
       setFilmes(response.data.data);
-    } catch (error) {
+    } catch (error: any) {
       if (error.response) {
         if (error.response.status === 400) {
           alert("Por favor, forneça um termo de busca válido.");
@@ -26,6 +35,7 @@ export default function FiltrarFilmes() {
       }
       console.error(error);
     }
+    
   }
   
 
