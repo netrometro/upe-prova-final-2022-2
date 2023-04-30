@@ -24,6 +24,15 @@ model Filme {
   em_cartaz Boolean
 }
 
+
+model DragQueen {
+  id     Int       @id @default(autoincrement())
+  name   String
+  season Int
+  winner Boolean
+  info   String?
+}
+
 model Escola {
   id         Int    @id @default(autoincrement())
   name       String
@@ -31,3 +40,4 @@ model Escola {
   qntdAlunos Int
   tipo       String
 }
+
