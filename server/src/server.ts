@@ -81,7 +81,7 @@ server.post('/dragQueens/create', async (request, reply) => {
         data: dragQueen,
       });
       reply.status(201).send({message: 'Drag queen criada com sucesso!'});
-      console.log(`Drag queen ${dragQueen.name}, season=${dragQueen.season}, info=${dragQueen.info}, winner=${dragQueen.winner}`);
+      console.log(newDragQueen);
   } catch (error) {
           
       console.error(error);
