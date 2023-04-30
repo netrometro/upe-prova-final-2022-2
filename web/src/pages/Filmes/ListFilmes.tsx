@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api";
 
+interface Filme {
+  id: number;
+  titulo: string;
+  descricao: string;
+  duracao: number;
+  em_cartaz: boolean;
+}
+
 export default function ListFilmes() {
-  const [filmes, setFilmes] = useState([]);
+  const [filmes, setFilmes] = useState<Filme[]>([]);
 
   useEffect(() => {
     async function loadFilmes() {

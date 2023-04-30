@@ -17,6 +17,7 @@ export default function Home() {
         <Link to={"/dragQueens"}>Drag Queens</Link>
         <Link to={"/animal"}>Animals</Link>
         <Link to={"/tasks"}>Tasks</Link>
+        teste
       </div>
     </>
   );
