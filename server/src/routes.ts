@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { CriarAnimaisController } from './controllers/animal/criarAnimaisControllers';
-import { CriarAnimaisServices } from './services/animals/criarAnimaisServices';
+//import { CriarAnimaisServices } from './services/animals/criarAnimaisServices';
 
 export default async function(app: FastifyInstance): Promise<void> {
   // Users

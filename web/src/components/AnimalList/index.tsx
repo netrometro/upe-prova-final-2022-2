@@ -14,7 +14,7 @@ export default function AnimaisList() {
 
   useEffect(() => {
     async function fetchAnimais() {
-      const response = await axios.get<Animal[]>('http://localhost:3333/animais');
+      const response = await axios.get<Animal[]>(import.meta.env.VITE_API_URL+'/animais');
       setAnimais(response.data);
     }
 
@@ -24,6 +24,7 @@ export default function AnimaisList() {
   return (
     <div>
       <h1>Lista de Animais</h1>
+      <p>{import.meta.env.VITE_API_URL}</p>
       <ul>
         {animais.map((animal) => (
           <li key={animal.id}>

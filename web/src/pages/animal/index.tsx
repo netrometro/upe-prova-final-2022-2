@@ -25,7 +25,7 @@ function AnimalPag() {
       idade: parseInt(idade, 10),
       vacinado,
     };
-    await axios.post('http://localhost:3333/animais', animal);
+    await axios.post(import.meta.env.VITE_API_URL+'/animais', animal);
     setNome('');
     setEspecie('');
     setIdade('');
