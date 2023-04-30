@@ -6,6 +6,8 @@ import AddDragQueen from './pages/DragQueens/addDragQueen';
 import Escola from "./Escola";
 import Home from "./Home";
 import AnimalPag from "./pages/animal/index";
+import Filmes from "./pages/Filmes/Filmes";
+import ListFilmes from "./pages/Filmes/ListFilmes";
 
 export default function App() {
 
@@ -20,9 +22,11 @@ export default function App() {
   return (
     <>
       <div className="app">
-        <main> 
+        <main>
           <Router>
             <Routes>
+              <Route path="/filmes" element={<Filmes />} />
+              <Route path="/ListaFilmes" element={<ListFilmes />} />
               <Route path="/dragQueens" element={<ListdragQueens/>} />
               <Route path="/dragQueens/create" element={<AddDragQueen/>} />
               <Route path='/' element={ <Home /> } />

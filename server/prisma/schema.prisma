@@ -8,11 +8,18 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(cuid())
-  email String  @unique
-  name  String?
+  id     String  @id @default(cuid())
+  email  String  @unique
+  name   String?
 }
 
+model Filme {
+  id        Int     @id @default(autoincrement())
+  titulo    String
+  descricao String
+  duracao   Int
+  em_cartaz Boolean
+}
 
 
 model Animal {
