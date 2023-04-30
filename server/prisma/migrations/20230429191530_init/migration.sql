@@ -8,14 +8,14 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "DragQueen" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "season" INTEGER NOT NULL,
-    "winner" BOOLEAN NOT NULL,
-    "info" TEXT,
+CREATE TABLE "Task" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "priority" INTEGER NOT NULL,
+    "completed" BOOLEAN NOT NULL,
 
-    CONSTRAINT "DragQueen_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
