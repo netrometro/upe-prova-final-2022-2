@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../services/api";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Filmes() {
@@ -11,7 +11,7 @@ export default function Filmes() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await api.post("filmes", {
+      const response = await axios.post("https://upeprovafinal.onrender.com/filmes", {
         titulo,
         descricao,
         duracao: parseInt(duracao),

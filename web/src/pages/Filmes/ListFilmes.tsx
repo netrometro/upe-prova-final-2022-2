@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/api";
+import axios from "axios";
 
 export default function ListFilmes() {
   const [filmes, setFilmes] = useState([]);
@@ -7,7 +7,7 @@ export default function ListFilmes() {
   useEffect(() => {
     async function loadFilmes() {
       try {
-        const response = await api.get("filmes");
+        const response = await axios.get("https://upeprovafinal.onrender.com/filmes");
         setFilmes(response.data.data);
       } catch (error) {
         console.error(error);
