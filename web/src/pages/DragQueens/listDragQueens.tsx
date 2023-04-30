@@ -30,7 +30,6 @@ export function ListdragQueens() {
         .catch((error: Error) => {
             console.error(error);
         });
-        console.log(dragQueens);
     });
     
     return (
