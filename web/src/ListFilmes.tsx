@@ -1,28 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "./services/api";
 
 export default function ListFilmes() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [duracao, setDuracao] = useState("");
-  const [emCartaz, setEmCartaz] = useState(false);
+  const [filmes, setFilmes] = useState([]);
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    try {
-      const response = await api.post("/filmes", {
-        titulo,
-        descricao,
-        duracao: parseInt(duracao),
-        em_cartaz: emCartaz,
-      });
-      console.log(response.data);
-      alert("Filme cadastrado com sucesso!");
-    } catch (error) {
-      alert("Cadastro de filme não realizado, por favor tentar novamente");
-      console.error(error);
+  useEffect(() => {
+    async function loadFilmes() {
+      try {
+        const response = await api.get("/filmes");
+        setFilmes(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  };
+    loadFilmes();
+  }, []);
 
   return (
     <>
@@ -35,45 +27,27 @@ export default function ListFilmes() {
           background: "rgba(255, 255, 255, 0.1)",
         }}
       >
-        <h1>Guarde aqui os seus títulos de filmes</h1>
-        <form onSubmit={handleSubmit}>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
-            <label htmlFor="titulo">Título:</label>
-            <input
-              type="text"
-              id="titulo"
-              value={titulo}
-              onChange={(event) => setTitulo(event.target.value)}
-            />
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
-            <label htmlFor="descricao">Descrição:</label>
-            <textarea
-              id="descricao"
-              value={descricao}
-              onChange={(event) => setDescricao(event.target.value)}
-            ></textarea>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
-            <label htmlFor="duracao">Duração:</label>
-            <input
-              type="text"
-              id="duracao"
-              value={duracao}
-              onChange={(event) => setDuracao(event.target.value)}
-            />
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "row", alignContent: "center", gap: "2%"}}>
-            <label htmlFor="emCartaz">Em cartaz:</label>
-            <input
-              type="checkbox"
-              id="emCartaz"
-              checked={emCartaz}
-              onChange={(event) => setEmCartaz(event.target.checked)}
-            />
-          </div>
-          <button type="submit">Enviar</button>
-        </form>
+        <h1>Lista dos seus filmes</h1>
+        <table style={{width: "100%", gap:"10%"}}>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descrição</th>
+              <th>Duração</th>
+              <th>Em cartaz</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filmes.map((filme) => (
+              <tr key={filme.id}>
+                <td>{filme.titulo}</td>
+                <td>{filme.descricao}</td>
+                <td>{filme.duracao} min</td>
+                <td>{filme.em_cartaz ? "Sim" : "Não"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <a
