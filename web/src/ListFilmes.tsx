@@ -8,7 +8,7 @@ export default function ListFilmes() {
   useEffect(() => {
     async function loadFilmes() {
       try {
-        const response = await axios.get("https://upeprovafinal.onrender.com/filmes");
+        const response = await api.get("filmes");
         setFilmes(response.data.data);
       } catch (error) {
         console.error(error);

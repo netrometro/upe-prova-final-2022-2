@@ -12,7 +12,7 @@ export default function Filmes() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://upeprovafinal.onrender.com/filmes", {
+      const response = await api.post("filmes", {
         titulo,
         descricao,
         duracao: parseInt(duracao),
