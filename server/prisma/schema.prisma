@@ -16,6 +16,7 @@ model User {
   name  String?
 }
 
+
 model DragQueen {
   id     Int       @id @default(autoincrement())
   name   String
@@ -23,3 +24,12 @@ model DragQueen {
   winner Boolean
   info   String?
 }
+
+model Escola {
+  id         Int    @id @default(autoincrement())
+  name       String
+  qntdSalas  Int
+  qntdAlunos Int
+  tipo       String
+}
+

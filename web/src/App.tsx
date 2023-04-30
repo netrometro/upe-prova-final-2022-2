@@ -2,7 +2,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ListdragQueens from './pages/DragQueens/listDragQueens';
 import AddDragQueen from './pages/DragQueens/addDragQueen';
-import NavBar from './navBar';
+import Escola from "./Escola";
+import Home from "./Home";
 
 export default function App() {
   
@@ -10,12 +11,12 @@ export default function App() {
     <>
       <div className="app">
         <main> 
-          <NavBar />
           <Router>
             <Routes>
               <Route path="/dragQueens" element={<ListdragQueens/>} />
               <Route path="/dragQueens/create" element={<AddDragQueen/>} />
-              <Route path="/" element={<h1>Home</h1>} />
+              <Route path='/' element={ <Home /> } />
+              <Route path='/escola' element={ <Escola/> }/>
             </Routes>
           </Router>
         </main>

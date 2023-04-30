@@ -3,6 +3,7 @@ import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { PrismaClient } from "@prisma/client";
 import { z } from 'zod';
+import { create, listAll } from './escolaController';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -20,10 +21,12 @@ server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
+server.get('/escola', listAll)
+server.post('/escola', create)
+
 server.get('/dragQueens', async (request, reply) => {
         
   try{ 
-
       const dragQueens = await prisma.dragQueen.findMany({
       });
       reply.send(dragQueens);
