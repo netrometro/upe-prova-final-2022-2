@@ -30,17 +30,6 @@ server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
-
-server.get('/livros', async (_request, reply) => {
-  try {
-    const livros = await prisma.livro.findMany({});
-    reply.send(livros);
-  } catch (error) {
-    console.error(error);
-    reply.status(500).send({ message: 'Erro ao buscar livros!' });
-  }
-});
-
 server.post<{ Body: LivroBody }>('/livros/create', async (request, reply) => {
   try {
     const { titulo, descricao, autor, disponivel = true } = request.body;
@@ -60,19 +49,13 @@ server.post<{ Body: LivroBody }>('/livros/create', async (request, reply) => {
   }
 });
 
-server.get<{ Params: LivroParams }>('/livros/:id', async (request, reply) => {
+server.get('/livros', async (_request, reply) => {
   try {
-    const { id } = request.params;
-    const livro = await prisma.livro.findUnique({
-      where: { id: Number(id) },
-    });
-    if (!livro) {
-      reply.status(404).send({ message: 'Livro não encontrado!' });
-    }
-    reply.send(livro);
+    const livros = await prisma.livro.findMany({});
+    reply.send(livros);
   } catch (error) {
     console.error(error);
-    reply.status(500).send({ message: 'Erro ao buscar Livro!' });
+    reply.status(500).send({ message: 'Erro ao buscar livros!' });
   }
 });
 
@@ -105,6 +88,22 @@ server.delete<{ Params: { id: string } }>('/livros/delete/:id', async (request, 
   } catch (error) {
     console.error(error);
     reply.status(500).send({ message: 'Erro ao deletar Livro!' });
+  }
+});
+
+server.get<{ Params: LivroParams }>('/livros/:id', async (request, reply) => {
+  try {
+    const { id } = request.params;
+    const livro = await prisma.livro.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!livro) {
+      reply.status(404).send({ message: 'Livro não encontrado!' });
+    }
+    reply.send(livro);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao buscar Livro!' });
   }
 });
 
