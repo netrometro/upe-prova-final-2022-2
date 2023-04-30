@@ -31,7 +31,7 @@ export function ListdragQueens() {
             console.error(error);
         });
         console.log(dragQueens);
-    }, []);
+    });
     
     return (
         <div className="tela">
@@ -62,8 +62,7 @@ export function ListdragQueens() {
                             <td className="table-body">{dragQueens.info}</td>
                             <td className="table-body">
                                 <div className="button-group">
-                                   
-                                    <button type='button' className="button-red" onClick={() => navigate(`/dragQueens/delete/${dragQueens.id}`)}>Deletar</button>
+                                    <button type='button' className="button-red" onClick={() => navigate(`/dragQueens`)}>Deletar</button>
                                 </div>
                             </td>
                         </tr>
