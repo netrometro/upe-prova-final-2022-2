@@ -23,3 +23,11 @@ model Filme {
   duracao   Int
   em_cartaz Boolean
 }
+
+model Escola {
+  id         Int    @id @default(autoincrement())
+  name       String
+  qntdSalas  Int
+  qntdAlunos Int
+  tipo       String
+}

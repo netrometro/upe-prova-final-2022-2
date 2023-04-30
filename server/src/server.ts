@@ -1,6 +1,7 @@
-import fastify from "fastify";
-import cors from "@fastify/cors";
-import * as dotenv from "dotenv";
+import fastify from 'fastify';
+import cors from '@fastify/cors'
+import * as dotenv from 'dotenv';
+import { create, listAll } from './escolaController';
 import filmeUp from "./controllers/filmes";
 
 dotenv.config();
@@ -16,6 +17,8 @@ server.get("/", async (request, reply) => {
 });
 
 server.post("/filmes", filmeUp);
+server.get('/escola', listAll)
+server.post('/escola', create)
 
 const PORT: any = process.env.PORT;
 
