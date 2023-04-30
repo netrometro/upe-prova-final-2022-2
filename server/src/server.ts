@@ -3,12 +3,12 @@ import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import { CriarAnimaisServices } from './services/animals/criarAnimaisServices';
-
 import { z } from 'zod';
 import { create, listAll } from './escolaController';
 import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
 import filmeUp from "./controllers/Filmes/filmes";
 import buscarFilmes from "./controllers/Filmes/getFilmes";
+import FiltrarFilmes from "./controllers/Filmes/findFilmes";
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -49,6 +49,7 @@ server.post('/animais', async (request, reply) => {
 
 server.post("/filmes", filmeUp);
 server.get("/filmes", buscarFilmes);
+server.post("/filtrar/filmes", FiltrarFilmes);
 server.get('/escola', listAll)
 server.post('/escola', create)
 server.get('/tasks', async (request, reply) => {
