@@ -91,33 +91,6 @@ server.post('/dragQueens/create', async (request, reply) => {
   }
 })
 
-const param = z.object({
-  id: z.number(),
-});
-
-server.delete('/dragQueens/delete/:id', async (request, reply) => {
-  try{
-      const {id} = param.parse(request.params);
-      
-      await prisma.dragQueen.delete({
-
-        where: {
-          id: id,
-        },
-      
-      })
-
-      reply.status(200).send({message: 'Drag queen deletada com sucesso!'});
-  
-  } catch (error) {
-
-      console.error(error);
-      reply.status(400).send({message: 'Erro ao deletar Drag queen!'});
-  
-  }
-
-})
-
 server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
   return getTaskById(request, reply);
 })
