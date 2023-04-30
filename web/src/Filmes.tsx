@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import api from "./services/api";
+import axios from "axios";
+import {api} from "./api/axios";
 import { Link } from "react-router-dom";
 
 export default function Filmes() {
@@ -8,10 +9,10 @@ export default function Filmes() {
   const [duracao, setDuracao] = useState("");
   const [emCartaz, setEmCartaz] = useState(false);
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await api.post("/filmes", {
+      const response = await axios.post("https://upeprovafinal.onrender.com/filmes", {
         titulo,
         descricao,
         duracao: parseInt(duracao),
@@ -38,7 +39,14 @@ export default function Filmes() {
       >
         <h1>Guarde aqui os seus títulos de filmes</h1>
         <form onSubmit={handleSubmit}>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+              gap: "2%",
+            }}
+          >
             <label htmlFor="titulo">Título:</label>
             <input
               type="text"
@@ -47,7 +55,14 @@ export default function Filmes() {
               onChange={(event) => setTitulo(event.target.value)}
             />
           </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+              gap: "2%",
+            }}
+          >
             <label htmlFor="descricao">Descrição:</label>
             <textarea
               id="descricao"
@@ -55,7 +70,14 @@ export default function Filmes() {
               onChange={(event) => setDescricao(event.target.value)}
             ></textarea>
           </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", gap: "2%"}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+              gap: "2%",
+            }}
+          >
             <label htmlFor="duracao">Duração:</label>
             <input
               type="text"
@@ -64,7 +86,15 @@ export default function Filmes() {
               onChange={(event) => setDuracao(event.target.value)}
             />
           </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "row", alignContent: "center", gap: "2%"}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexDirection: "row",
+              alignContent: "center",
+              gap: "2%",
+            }}
+          >
             <label htmlFor="emCartaz">Em cartaz:</label>
             <input
               type="checkbox"
