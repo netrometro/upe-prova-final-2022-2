@@ -3,6 +3,7 @@ import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { create, listAll } from './escolaController';
 import filmeUp from "./controllers/filmes";
+import buscarFilmes from "./controllers/getFilmes";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ server.get("/", async (request, reply) => {
 });
 
 server.post("/filmes", filmeUp);
+server.get("/filmes", buscarFilmes);
 server.get('/escola', listAll)
 server.post('/escola', create)
 
