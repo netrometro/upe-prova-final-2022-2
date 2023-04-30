@@ -44,6 +44,7 @@ export async function getTaskById(request: FastifyRequest<{ Params: { id: string
           priority, 
           completed} 
         });
+        reply.status(201).send({message: 'Task criada com sucesso!'});
       return task;
     } catch (err) {
       reply.code(500).send({ error: "Internal server error" });
@@ -69,7 +70,8 @@ export async function deleteTask(request: FastifyRequest<{ Params: { id: string 
     const id = request.params.id;
     const task = await prisma.task.delete({ where: { id } });
 
-    return task;
+
+    reply.status(200).send({message: 'Task deletada com sucesso!'});
   } catch (err) {
     reply.code(500).send({ error: "Internal server error" });
   }
