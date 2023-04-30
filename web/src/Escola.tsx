@@ -65,7 +65,7 @@ export default function Escola() {
 
         <div>
             {
-                escolas?.length ? escolas.map((data: any) =>
+                escolasFiltradas?.length ? escolasFiltradas.map((data: any) =>
                 <div>
                     <div key={data.id}>
                         <h2>Nome: {data.name}</h2>
