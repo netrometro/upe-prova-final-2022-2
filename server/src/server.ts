@@ -1,6 +1,7 @@
-import fastify from 'fastify';
+import fastify, { FastifyRequest, FastifyReply } from 'fastify';
 import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
+import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
 
 dotenv.config()
 
@@ -13,6 +14,28 @@ server.register(cors);
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
+
+server.get('/tasks', async (request, reply) => {
+  return getAllTasks();
+})
+
+
+server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
+  return getTaskById(request, reply);
+})
+
+server.post<{ Body: { title: string; description: string; priority: number; completed: boolean; } }>("/tasks/create", async (request, reply) => {
+  return createTask(request, reply);
+})
+
+server.put("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string }, Body: { title?: string, description?: string, priority?: number, completed?: boolean } }>, reply: FastifyReply) => {
+  return updateTask(request, reply);
+})
+
+server.delete('/tasks/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
+  return deleteTask(request, reply);
+})
+
 
 
 const PORT: any = process.env.PORT;

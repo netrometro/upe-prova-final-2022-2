@@ -1,10 +1,12 @@
 import './App.css'
+import TaskList from './pages/TaskList'
 
 export default function App() {
 
-  return (
-    <>
-      <p>Hello World!</p>
-    </>
-  );
+  return <div>
+  <h1>Task List</h1>
+  <TaskList />
+</div>
+
 }
+
