@@ -1,4 +1,5 @@
 import './App.css'
+import TaskList from './pages/TaskList'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ListdragQueens from './pages/DragQueens/listDragQueens';
 import AddDragQueen from './pages/DragQueens/addDragQueen';
@@ -7,6 +8,12 @@ import Home from "./Home";
 import AnimalPag from "./pages/animal/index";
 
 export default function App() {
+
+  return <div>
+  <h1>Task List</h1>
+  <TaskList />
+</div>
+
   
   return (
     <>
@@ -26,3 +33,4 @@ export default function App() {
     </>
   );
 }
+

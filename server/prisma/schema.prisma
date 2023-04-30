@@ -40,3 +40,11 @@ model Escola {
   tipo       String
 }
 
+
+model Task {
+  id   String  @id @default(cuid())
+  title String 
+  description String
+  priority Int
+  completed Boolean
+}

@@ -1,4 +1,4 @@
-import fastify from 'fastify';
+import fastify, { FastifyRequest, FastifyReply } from 'fastify';
 import cors from '@fastify/cors'
 import * as dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
@@ -6,6 +6,7 @@ import { CriarAnimaisServices } from './services/animals/criarAnimaisServices';
 
 import { z } from 'zod';
 import { create, listAll } from './escolaController';
+import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -46,6 +47,9 @@ server.post('/animais', async (request, reply) => {
 
 server.get('/escola', listAll)
 server.post('/escola', create)
+server.get('/tasks', async (request, reply) => {
+  return getAllTasks();
+})
 
 server.get('/dragQueens', async (request, reply) => {
         
@@ -113,6 +117,25 @@ server.delete('/dragQueens/delete/:id', async (request, reply) => {
   }
 
 })
+
+server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
+  return getTaskById(request, reply);
+})
+
+server.post<{ Body: { title: string; description: string; priority: number; completed: boolean; } }>("/tasks/create", async (request, reply) => {
+  return createTask(request, reply);
+})
+
+server.put("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string }, Body: { title?: string, description?: string, priority?: number, completed?: boolean } }>, reply: FastifyReply) => {
+  return updateTask(request, reply);
+})
+
+server.delete('/tasks/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
+  return deleteTask(request, reply);
+})
+
+
+
 const PORT: any = process.env.PORT;
 
 server.listen({ port: PORT }, (err, address) => {
