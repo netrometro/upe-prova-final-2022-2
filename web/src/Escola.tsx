@@ -61,6 +61,8 @@ export default function Escola() {
         <button type="submit">Salvar</button>
         </form>
 
+        <input type="text" placeholder='Pesquisar' value={searchTerm} onChange={event => {setSearchTerm(event.target.value)}}/>
+
         <div>
             {
                 escolas?.length ? escolas.map((data: any) =>
