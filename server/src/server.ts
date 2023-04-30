@@ -28,7 +28,7 @@ server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
 });
 
-server.get('/animais/get', async (request, reply) => {
+server.get('/animais', async (request, reply) => {
   const animais = await prismaElison.animal.findMany();
   return animais;
 });
@@ -40,7 +40,7 @@ interface Animal {
   vacinado: boolean;
 }
 
-server.post('/animais/create', async (request, reply) => {
+server.post('/animais', async (request, reply) => {
   const { nome, especie, idade, vacinado } = request.body as Animal;
   const criarAnimaisService = new CriarAnimaisServices();
   const animal = await criarAnimaisService.execute({ nome, especie, idade, vacinado });
