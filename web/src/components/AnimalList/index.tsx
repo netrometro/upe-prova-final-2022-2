@@ -11,7 +11,8 @@ type Animal = {
 
 export default function AnimaisList() {
   const [animais, setAnimais] = useState<Animal[]>([]);
-  const [busca, setBusca] = useState('');
+  const [filtro, setFiltro] = useState<'todos' | 'vacinados' | 'nao-vacinados'>('todos');
+  const [pesquisa, setPesquisa] = useState<string>('');
 
   useEffect(() => {
     async function fetchAnimais() {
@@ -22,18 +23,39 @@ export default function AnimaisList() {
     fetchAnimais();
   }, []);
 
-  const animaisFiltrados = animais.filter(animal => {
-    return (
-      animal.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      animal.especie.toLowerCase().includes(busca.toLowerCase()) ||
-      animal.idade.toString().includes(busca.toLowerCase())
-    )
-  })
+  function filtrarAnimais(animal: Animal) {
+    if (filtro === 'todos') {
+      return true;
+    } else if (filtro === 'vacinados') {
+      return animal.vacinado;
+    } else if (filtro === 'nao-vacinados') {
+      return !animal.vacinado;
+    }
+  }
+
+  function pesquisarAnimais(animal: Animal) {
+    return animal.nome.toLowerCase().includes(pesquisa.toLowerCase()) || 
+           animal.especie.toLowerCase().includes(pesquisa.toLowerCase());
+  }
+
+  const animaisFiltrados = animais.filter(filtrarAnimais).filter(pesquisarAnimais);
 
   return (
     <div>
       <h1>Lista de Animais</h1>
-      <input type="text" placeholder="Buscar" value={busca} onChange={(e) => setBusca(e.target.value)} />
+      <label>
+        Filtro:
+        <select value={filtro} onChange={e => setFiltro(e.target.value as 'todos' | 'vacinados' | 'nao-vacinados')}>
+          <option value="todos">Todos</option>
+          <option value="vacinados">Vacinados</option>
+          <option value="nao-vacinados">Não Vacinados</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Pesquisar:
+        <input type="text" value={pesquisa} onChange={e => setPesquisa(e.target.value)} />
+      </label>
       <ul>
         {animaisFiltrados.map((animal) => (
           <li key={animal.id}>
