@@ -31,6 +31,21 @@ export function ListdragQueens() {
             console.error(error);
         });
     });
+
+    function searchDragQueen(dragQueen: DragQueens, search: string): boolean {
+        const searchWinners = search === "vencedoras" ? true : search === "perdedoras" ? false : undefined;
+        return dragQueen.name.toLowerCase().includes(search.toLowerCase())
+            || dragQueen.season.toString().includes(search.toLowerCase()) 
+            || dragQueen.winner === searchWinners;
+
+    }   
+
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    
+    const filteredDragQueens = dragQueens.filter((dragQueen) =>
+        searchDragQueen(dragQueen, searchTerm)
+    );
+
     
     return (
         <div className="tela">
@@ -38,7 +53,7 @@ export function ListdragQueens() {
             <p>Lista de drag queens que participaram de Rupaul's Drag Race</p>
             <br />
             <div className="head">
-                
+                <input type="text" className="input-queens" placeholder="Buscar" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
                 <button type='button' className="button-green" onClick={() => navigate('/dragQueens/create')}>Adicionar</button>
             </div>
             <table className="table">
@@ -52,7 +67,7 @@ export function ListdragQueens() {
                     </tr>
                 </thead>
                 <tbody >
-                    {dragQueens.map(dragQueens => (
+                    {filteredDragQueens.map((dragQueens) => (
                         <tr key={dragQueens.id}>
                             <td className="table-body">{dragQueens.name}</td>
                             <td className="table-season">{dragQueens.season}</td>
@@ -60,7 +75,7 @@ export function ListdragQueens() {
                             <td className="table-body">{dragQueens.info}</td>
                             <td className="table-body">
                                 <div className="button-group">
-                                    <button type='button' className="button-red" onClick={() => navigate(`/dragQueens`)}>Deletar</button>
+                                    <button type='button' className="button-blue" onClick={() => navigate(`/dragQueens`)}>Editar</button>
                                 </div>
                             </td>
                         </tr>
