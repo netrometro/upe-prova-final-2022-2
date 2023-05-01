@@ -1,17 +1,19 @@
 'use client';
 import { api } from "../../api/axios";
-import { FormEvent, useState, useEffect } from "react";
+//Comentei o useEffect pois nao estava sendo usado, logo, apresentando erro
+//import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 
-interface Livros {
-  id:         number;
-  titulo:     string;
-  descricao:  string;
-  autor:      string;
-  disponivel: boolean; 
-}
+//interface Livros {
+//  id:         number;
+//  titulo:     string;
+//  descricao:  string;
+//  autor:      string;
+//  disponivel: boolean; 
+//}
 
 export function AddLivro() {
 
@@ -21,8 +23,8 @@ export function AddLivro() {
   const [LivroDescricao, setLivroDescricao] = useState('');
   const [LivroAutor, setLivroAutor] = useState('');
   const [LivroDisponivel, setLivroDisponivel] = useState(false);
-  const [livro, setLivro] = useState<Livros[]>([]);
-
+//  const [livro, setLivro] = useState<Livros[]>([]);
+//Não sendo utilizado e estava apresentando erros
 
   function createLivro(event: FormEvent) {
     event.preventDefault();

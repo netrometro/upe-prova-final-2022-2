@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+//Comentei o useState pois nao estava sendo usado, logo, apresentando erro
+//import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { api } from "../../api/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import './style.css';

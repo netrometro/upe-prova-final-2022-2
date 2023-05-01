@@ -2,6 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Escola() {
+    const api = import.meta.env.VITE_API_URL;
+
+    interface Escola {
+        id: number;
+        name: string;
+        qntdSalas: number;
+        qntdAlunos: number;
+        tipo: string;
+    }
 
     const [data, setData] = useState({
         name: "",
@@ -10,14 +19,17 @@ export default function Escola() {
         tipo: ""
     })
 
-    const [escolas, setEscolas] = useState([]);
+    const [escolas, setEscolas] = useState<Escola[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const getEscolas = async () => {
-        const escola = await axios.get('https://upeprovafinal.onrender.com/escola');
+        const escola = await axios.get(`${api}/escola`);
         console.log(escola.data)
         setEscolas(escola.data)
         //setEscolas();
     }
+
+    const escolasFiltradas = escolas.filter(escola => escola.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     useEffect(() => {
         getEscolas();
@@ -26,7 +38,7 @@ export default function Escola() {
     const save = async (ev: React.FormEvent<HTMLFormElement>) => {
         try {
             ev.preventDefault();
-            await axios.post("https://upeprovafinal.onrender.com/escola", data);
+            await axios.post(`${api}/escola`, data);
             alert("Escola cadastrada")
         } catch (e) {
             alert("Erro")
@@ -50,9 +62,11 @@ export default function Escola() {
         <button type="submit">Salvar</button>
         </form>
 
+        <input type="text" placeholder='Pesquisar' value={searchTerm} onChange={event => {setSearchTerm(event.target.value)}}/>
+
         <div>
             {
-                escolas?.length ? escolas.map((data: any) =>
+                escolasFiltradas?.length ? escolasFiltradas.map((data: any) =>
                 <div>
                     <div key={data.id}>
                         <h2>Nome: {data.name}</h2>
