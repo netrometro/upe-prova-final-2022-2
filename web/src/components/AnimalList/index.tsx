@@ -11,6 +11,7 @@ type Animal = {
 
 export default function AnimaisList() {
   const [animais, setAnimais] = useState<Animal[]>([]);
+  const [busca, setBusca] = useState('');
 
   useEffect(() => {
     async function fetchAnimais() {
@@ -21,11 +22,20 @@ export default function AnimaisList() {
     fetchAnimais();
   }, []);
 
+  const animaisFiltrados = animais.filter(animal => {
+    return (
+      animal.nome.toLowerCase().includes(busca.toLowerCase()) ||
+      animal.especie.toLowerCase().includes(busca.toLowerCase()) ||
+      animal.idade.toString().includes(busca.toLowerCase())
+    )
+  })
+
   return (
     <div>
       <h1>Lista de Animais</h1>
+      <input type="text" placeholder="Buscar" value={busca} onChange={(e) => setBusca(e.target.value)} />
       <ul>
-        {animais.map((animal) => (
+        {animaisFiltrados.map((animal) => (
           <li key={animal.id}>
             {animal.nome} - {animal.especie} - {animal.idade} anos - {animal.vacinado ? 'Vacinado' : 'Não Vacinado'}
           </li>
