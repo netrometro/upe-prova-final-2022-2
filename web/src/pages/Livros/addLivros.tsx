@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 
-interface Livros {
-  id:         number;
-  titulo:     string;
-  descricao:  string;
-  autor:      string;
-  disponivel: boolean; 
-}
+//interface Livros {
+//  id:         number;
+//  titulo:     string;
+//  descricao:  string;
+//  autor:      string;
+//  disponivel: boolean; 
+//}
 
 export function AddLivro() {
 
