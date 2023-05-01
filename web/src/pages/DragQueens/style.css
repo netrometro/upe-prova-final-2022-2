@@ -19,8 +19,9 @@
     color: #fff;
     margin: 15px;
     border-radius: 10px;
-    width: 80px;
-    height: 30px;
+    display:flex;
+    flex-wrap: nowrap;
+    padding: 10px;
 }
 
 .button-green:hover{
@@ -34,8 +35,9 @@
     color: #fff;
     margin: 15px;
     border-radius: 10px;
-    width: 80px;
-    height: 30px;
+    display:flex;
+    flex-wrap: nowrap;
+    padding: 10px;
 }
 
 .button-red:hover{
@@ -49,8 +51,9 @@
     color: #fff;
     margin: 15px;
     border-radius: 10px;
-    width: 80px;
-    height: 30px;
+    display:flex;
+    flex-wrap: nowrap;
+    padding: 10px;
 }
 
 .button-blue:hover{
