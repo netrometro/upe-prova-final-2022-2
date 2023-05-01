@@ -1,0 +1,194 @@
+.tela{
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: #fff;
+     color: black;
+     padding: 60px;
+     width: 93%;
+     font-size: 5px;
+     font-weight: 400;
+     line-height: 1.7;
+ 
+ }
+
+ .tela-list{
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: #fff;
+     color: black;
+     padding: 60px;
+     width: 90%;
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 1.5;
+ 
+ }
+ 
+ .button-add{
+     background-color: #1dd41d;
+     border: none;
+     color: #fff;
+     margin: 15px;
+     border-radius: 10px;
+     width: 80px;
+     height: 30px;
+ }
+ 
+ .button-delete{
+    background-color: red;
+    border: none;
+    color: #fff;
+    margin: 15px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+.button-edit{
+    background-color: blue;
+    border: none;
+    color: #fff;
+    margin: 15px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+} 
+
+.button-add:hover{
+     cursor: pointer;
+     background-color: #09b409;
+ }
+ .table-head{
+     text-align: center;
+     margin: 20px;
+     font-size: 16px;
+     font-weight: 800;
+     line-height: 1.5;
+ }
+ .table-body{
+     text-align: justify;
+     margin: 20px;
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 1.5;
+ }
+ .table-season{
+     text-align: center;
+ 
+ }
+ .head{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 1.5;
+ 
+ }
+ .button-group{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     margin: 5px;
+ }
+ .table{
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     width: 900px;
+     flex-wrap: wrap;
+     margin: 40px;
+     padding: 20px;
+     border: none;
+     border-radius: 10px;
+     background-color: #eeeeee;
+     box-shadow: 0px 0px 10px #c2c1c1;
+ 
+ }
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #888;
+}
+
+.title {
+  text-align: center;
+  font-size: 36px;
+}
+
+.body-livros {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.label-livros {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-livros {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.button-green {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-search {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 6px 13px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button-pesquisa{
+  padding: 5px 13px;
+  margin-right: 10px;
+}
+
+.button-blue {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}

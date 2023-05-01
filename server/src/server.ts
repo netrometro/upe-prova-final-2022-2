@@ -8,7 +8,7 @@ import { create, listAll } from './escolaController';
 import { getAllTasks, getTaskById, createTask, updateTask, deleteTask } from "./controllers/tasks";
 import filmeUp from "./controllers/Filmes/filmes";
 import buscarFilmes from "./controllers/Filmes/getFilmes";
-import FiltrarFilmes from "./controllers/Filmes/findFilmes";
+import FiltrarFilmes from './controllers/Filmes/findFilmes';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -27,6 +27,17 @@ const prismaElison = new PrismaClient();
 server.get('/teste', async (request, reply) => {
   return { msg: "ok"};
 });
+
+interface LivroBody {
+  titulo: string;
+  descricao?: string;
+  autor?: string;
+  disponivel?: boolean;
+}
+
+interface LivroParams {
+  id: number;
+}
 
 server.get('/', async (request, reply) => {
   return { msg: "Prova Final" };
@@ -53,7 +64,7 @@ server.post('/animais', async (request, reply) => {
 
 server.post("/filmes", filmeUp);
 server.get("/filmes", buscarFilmes);
-server.get("/filtrar/filmes", FiltrarFilmes);
+server.get("/Filtrarfilmes", FiltrarFilmes);
 server.get('/escola', listAll)
 server.post('/escola', create)
 server.get('/tasks', async (request, reply) => {
@@ -90,7 +101,7 @@ server.post('/dragQueens/create', async (request, reply) => {
         data: dragQueen,
       });
       reply.status(201).send({message: 'Drag queen criada com sucesso!'});
-      console.log(`Drag queen ${dragQueen.name}, season=${dragQueen.season}, info=${dragQueen.info}, winner=${dragQueen.winner}`);
+      console.log(newDragQueen);
   } catch (error) {
           
       console.error(error);
@@ -98,33 +109,6 @@ server.post('/dragQueens/create', async (request, reply) => {
       reply.status(400).send({message: 'Erro ao criar Drag queen!'});
       
   }
-})
-
-const param = z.object({
-  id: z.number(),
-});
-
-server.delete('/dragQueens/delete/:id', async (request, reply) => {
-  try{
-      const {id} = param.parse(request.params);
-      
-      await prisma.dragQueen.delete({
-
-        where: {
-          id: id,
-        },
-      
-      })
-
-      reply.status(200).send({message: 'Drag queen deletada com sucesso!'});
-  
-  } catch (error) {
-
-      console.error(error);
-      reply.status(400).send({message: 'Erro ao deletar Drag queen!'});
-  
-  }
-
 })
 
 server.get("/tasks/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply) => {
@@ -144,6 +128,102 @@ server.delete('/tasks/:id', async (request: FastifyRequest<{ Params: { id: strin
 })
 
 
+server.post<{ Body: LivroBody }>('/livros/create', async (request, reply) => {
+  try {
+    const { titulo, descricao, autor, disponivel = true } = request.body;
+    const livro = await prisma.livro.create({
+      data: {
+        titulo,
+        descricao,
+        autor,
+        disponivel,
+      },
+    });
+    reply.status(201).send({ message: 'Livro criado com sucesso!', livro });
+    console.log(`Livro ${titulo}, descricao=${descricao}, autor=${autor}, disponivel=${disponivel}`);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao criar Livro!' });
+  }
+});
+
+server.get('/livros', async (_request, reply) => {
+  try {
+    const livros = await prisma.livro.findMany({});
+    reply.send(livros);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao buscar livros!' });
+  }
+});
+
+server.put<{ Params: LivroParams; Body: LivroBody }>('/livros/:id', async (request, reply) => {
+  try {
+    const { id } = request.params;
+    const { titulo, descricao, autor, disponivel } = request.body;
+    const livro = await prisma.livro.update({
+      where: { id: Number(id) },
+      data: {
+        titulo,
+        descricao,
+        autor,
+        disponivel,
+      },
+    });
+    reply.send({ message: 'Livro atualizado com sucesso!', livro });
+    console.log(`Livro ${titulo}, descricao=${descricao}, autor=${autor}, disponivel=${disponivel}`);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao atualizar Livro!' });
+  }
+});
+
+server.delete<{ Params: { id: string } }>('/livros/delete/:id', async (request, reply) => {
+  try {
+    const id = Number(request.params.id);
+    await prisma.livro.delete({ where: { id } });
+    reply.status(200).send({ message: 'Livro deletado com sucesso!' });
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao deletar Livro!' });
+  }
+});
+
+server.get<{ Params: LivroParams }>('/livros/:id', async (request, reply) => {
+  try {
+    const { id } = request.params;
+    const livro = await prisma.livro.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!livro) {
+      reply.status(404).send({ message: 'Livro não encontrado!' });
+    }
+    reply.send(livro);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao buscar Livro!' });
+  }
+});
+
+server.get<{ Params: { query: string } }>('/livros/search/:query', async (request, reply) => {
+  try {
+    const { query } = request.params;
+    const livros = await prisma.livro.findMany({
+      where: {
+        OR: [
+          { titulo: { contains: query } },
+          { descricao: { contains: query } },
+          { autor: { contains: query } }
+        ]
+      }
+    });
+    console.log('chegou', livros)
+    reply.send(livros);
+  } catch (error) {
+    console.error(error);
+    reply.status(500).send({ message: 'Erro ao buscar livros!' });
+  }
+});
 
 const PORT: any = process.env.PORT;
 
