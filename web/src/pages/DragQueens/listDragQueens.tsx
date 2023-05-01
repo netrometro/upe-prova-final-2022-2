@@ -48,8 +48,8 @@ export function ListdragQueens() {
 
     
     return (
-        <div className="tela">
-            <h1>Drag Queens</h1>
+        <div className="tela-queens">
+            <h1 className="tittle-queens">Drag Queens</h1>
             <p>Lista de drag queens que participaram de Rupaul's Drag Race</p>
             <br />
             <div className="head">
