@@ -8,6 +8,7 @@ interface Livros {
     titulo: string;
     descricao: string;
     autor: string;
+    quantidade: number;
     disponivel: boolean;
 }
 
@@ -20,6 +21,7 @@ export function EditLivro() {
         titulo: "",
         descricao: "",
         autor: "",
+        quantidade: 0,
         disponivel: false,
     });
 
@@ -38,6 +40,7 @@ export function EditLivro() {
                 titulo: livro.titulo,
                 descricao: livro.descricao,
                 autor: livro.autor,
+                quantidade: livro.quantidade,
                 disponivel: livro.disponivel,
             });
             alert("Livro atualizado com sucesso");
@@ -107,6 +110,24 @@ export function EditLivro() {
                             }
                             value={livro.autor}
                             required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="quantidade" className="label-livros">
+                            {" "}
+                            Quantidade:
+                        </label>
+                        <br />
+                        <input
+                            type="number"
+                            name="quantidade"
+                            id="quantidade"
+                            className="input-livros"
+                            onChange={(event) =>
+                                setLivro({ ...livro, quantidade: parseInt(event.target.value) })
+                            }
+                            value={livro.quantidade}
+                            min="0" required
                         />
                     </div>
                     <div>

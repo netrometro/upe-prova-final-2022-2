@@ -6,15 +6,6 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
-
-//interface Livros {
-//  id:         number;
-//  titulo:     string;
-//  descricao:  string;
-//  autor:      string;
-//  disponivel: boolean; 
-//}
-
 export function AddLivro() {
 
   const navigate = useNavigate();
@@ -23,8 +14,7 @@ export function AddLivro() {
   const [LivroDescricao, setLivroDescricao] = useState('');
   const [LivroAutor, setLivroAutor] = useState('');
   const [LivroDisponivel, setLivroDisponivel] = useState(false);
-//  const [livro, setLivro] = useState<Livros[]>([]);
-//Não sendo utilizado e estava apresentando erros
+  const [LivroQuantidade, setLivroQuantidade] = useState(0);
 
   function createLivro(event: FormEvent) {
     event.preventDefault();
@@ -34,6 +24,7 @@ export function AddLivro() {
         titulo: LivroTitulo,
         descricao: LivroDescricao,
         autor: LivroAutor,
+        quantidade: LivroQuantidade,
         disponivel: LivroDisponivel,
       });
       alert('Livro cadastrado com sucesso');
@@ -42,6 +33,7 @@ export function AddLivro() {
       setLivroTitulo('');
       setLivroDescricao('');
       setLivroAutor('');
+      setLivroQuantidade(0)
       setLivroDisponivel(false);
 
     } catch (err) {
@@ -58,18 +50,23 @@ export function AddLivro() {
         <div className='body-livros'>
           <div >
             <label htmlFor="titulo" className='label-livros'> Título:</label>
-            <br/>
+            <br />
             <input type="text" name="titulo" id="titulo" className='input-livros' onChange={event => setLivroTitulo(event.target.value)} value={LivroTitulo} required />
           </div>
           <div >
             <label htmlFor="descricao" className='label-livros'> Descrição:</label>
-            <br/>
+            <br />
             <input type="text" name="descricao" id="descricao" className='input-livros' onChange={event => setLivroDescricao(event.target.value)} value={LivroDescricao} required />
           </div>
           <div >
             <label htmlFor="autor" className='label-livros'> Autor:</label>
-            <br/>
+            <br />
             <input type="text" name="autor" id="autor" className='input-livros' onChange={event => setLivroAutor(event.target.value)} value={LivroAutor} required />
+          </div>
+          <div >
+            <label htmlFor="quantidade" className='label-livros'> Quantidade:</label>
+            <br />
+            <input type="number" name="quantidade" id="quantidade" className='input-livros' onChange={event => setLivroQuantidade(Number(event.target.value))} value={LivroQuantidade} min="0" required />
           </div>
           <div >
             <label htmlFor="disponivel" className='label-livros'>O livro está disponivel?</label>
@@ -82,7 +79,7 @@ export function AddLivro() {
           <br />
           <div className='button-group'>
             <button type="submit" className='button-green'>Cadastrar</button>
-            <button type="button" className='button-blue' onClick={() => navigate( '/livros')}>Voltar</button>
+            <button type="button" className='button-blue' onClick={() => navigate('/livros')}>Voltar</button>
           </div>
         </div>
       </form>

@@ -9,6 +9,7 @@ interface Livros{
         titulo:      string;
         descricao:   string;
         autor:       string;
+        quantidade:  number;
         disponivel:  boolean;
         createdAt:   Date;
         updatedAt:   Date;
@@ -64,6 +65,7 @@ export function Listlivros() {
                         <th className="table-head">Título</th>
                         <th className="table-head">Descrição</th>
                         <th className="table-head">Autor</th>
+                        <th className="table-head">Quantidade</th>
                         <th className="table-head">Dísponivel</th>
                     </tr>
                 </thead>
@@ -74,6 +76,7 @@ export function Listlivros() {
                             <td className="table-body">{livros.titulo}</td>
                             <td className="table-season">{livros.descricao}</td>
                             <td className="table-season">{livros.autor}</td>
+                            <td className="table-season">{livros.quantidade}</td>
                             <td className="table-season">{livros.disponivel ? "Sim" : "Não"}</td>
                             <td className="table-body">
                                 <div className="button-group">

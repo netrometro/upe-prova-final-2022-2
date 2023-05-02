@@ -61,6 +61,7 @@ model Livro {
   titulo        String
   descricao     String?
   autor         String?
+  quantidade    Int
   disponivel    Boolean @default(true)
 }
 

@@ -32,6 +32,7 @@ interface LivroBody {
   titulo: string;
   descricao?: string;
   autor?: string;
+  quantidade: number;
   disponivel?: boolean;
 }
 
@@ -130,17 +131,18 @@ server.delete('/tasks/:id', async (request: FastifyRequest<{ Params: { id: strin
 
 server.post<{ Body: LivroBody }>('/livros/create', async (request, reply) => {
   try {
-    const { titulo, descricao, autor, disponivel = true } = request.body;
+    const { titulo, descricao, autor, quantidade, disponivel = true } = request.body;
     const livro = await prisma.livro.create({
       data: {
         titulo,
         descricao,
         autor,
+        quantidade,
         disponivel,
       },
     });
     reply.status(201).send({ message: 'Livro criado com sucesso!', livro });
-    console.log(`Livro ${titulo}, descricao=${descricao}, autor=${autor}, disponivel=${disponivel}`);
+    console.log(`Livro ${titulo}, descricao=${descricao}, autor=${autor}, quantidade=${quantidade}, disponivel=${disponivel}`);
   } catch (error) {
     console.error(error);
     reply.status(500).send({ message: 'Erro ao criar Livro!' });
@@ -160,13 +162,14 @@ server.get('/livros', async (_request, reply) => {
 server.put<{ Params: LivroParams; Body: LivroBody }>('/livros/:id', async (request, reply) => {
   try {
     const { id } = request.params;
-    const { titulo, descricao, autor, disponivel } = request.body;
+    const { titulo, descricao, autor, quantidade, disponivel } = request.body;
     const livro = await prisma.livro.update({
       where: { id: Number(id) },
       data: {
         titulo,
         descricao,
         autor,
+        quantidade,
         disponivel,
       },
     });
