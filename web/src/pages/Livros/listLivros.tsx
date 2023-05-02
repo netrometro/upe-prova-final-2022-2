@@ -35,11 +35,7 @@ export function Listlivros() {
     }, []);
 
     const handleSearch = () => {
-        api.get("/livros/search/:", {
-            params: {
-                query: searchTerm
-            }
-        })
+        api.get(`/livros/search/${searchTerm}`)
         .then((response: AxiosResponse<Livros[]>) => {
             setLivros(response.data);
             console.log(response.data);
@@ -49,7 +45,7 @@ export function Listlivros() {
         });
         setSearchTerm("");
     }
-    
+                  
     return (
         <div className="tela-list">
             <h1>Livros</h1>

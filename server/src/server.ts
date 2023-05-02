@@ -208,7 +208,7 @@ server.get<{ Params: LivroParams }>('/livros/:id', async (request, reply) => {
   }
 });
 
-server.get<{ Params: { query: string } }>('/livros/search/:query', async (request, reply) => {
+server.get<{ Params: { query: string } }>('/livros/search/:query?', async (request, reply) => {
   try {
     const { query } = request.params;
     const livros = await prisma.livro.findMany({
